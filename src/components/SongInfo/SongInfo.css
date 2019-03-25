@@ -1,0 +1,63 @@
+.song-info {
+	background: #fef4ea;
+	width: 100%;
+	height: 241px;
+	position: relative;
+}
+
+.song-info-bg {
+	background: url('https://i1.sndcdn.com/artworks-000246862967-g7h6id-t500x500.jpg') bottom / cover
+		no-repeat;
+	width: inherit;
+	height: inherit;
+	filter: blur(32px);
+	opacity: 0.24;
+	position: absolute;
+}
+.cover-img {
+	width: 132px;
+	height: 132px;
+	position: absolute;
+	display: flex;
+	margin: 32px;
+	z-index: 2;
+}
+.cover-img-blur {
+	width: 128px;
+	height: 128px;
+	position: absolute;
+	display: flex;
+	margin: 49px 32px;
+	filter: blur(15px);
+	opacity: 0.4;
+	z-index: 1;
+}
+.info {
+	position: absolute;
+	left: 180px;
+	margin: 42px 32px;
+	font-family: Helvetica;
+	color: #26107b;
+}
+
+.info p:first-child {
+	font-size: 20px;
+	letter-spacing: -0.25px;
+	margin: 0;
+}
+.info p:nth-child(2) {
+	font-size: 12px;
+	letter-spacing: -0.15px;
+	opacity: 0, 7;
+	margin-top: 13px;
+}
+.buttons {
+	display: flex;
+	flex-direction: row;
+	bottom: 0px;
+	position: absolute;
+	margin: 32px;
+}
+.buttons img {
+	padding-right: 45px;
+}
