@@ -13,51 +13,83 @@
 	filter: blur(32px);
 	opacity: 0.24;
 	position: absolute;
+	overflow: hidden;
+}
+.song-info-bg::before {
+	width: 100%;
+}
+
+.song-info-container-top {
+	padding: 32px;
+	padding-bottom: 12px;
+	display: flex;
+	justify-content: flex-start;
+}
+
+.song-info-flex {
+	width: 132px;
+	height: 132px;
 }
 .cover-img {
 	width: 132px;
 	height: 132px;
-	position: absolute;
-	display: flex;
-	margin: 32px;
-	z-index: 2;
+	z-index: 3;
+	position: relative;
 }
 .cover-img-blur {
-	width: 128px;
-	height: 128px;
+	width: 132px;
+	height: 132px;
+	left: 32px;
 	position: absolute;
-	display: flex;
-	margin: 49px 32px;
 	filter: blur(15px);
 	opacity: 0.4;
-	z-index: 1;
-}
-.info {
-	position: absolute;
-	left: 180px;
-	margin: 42px 32px;
-	font-family: Helvetica;
-	color: #26107b;
+	z-index: 2;
 }
 
+.info {
+	font-family: Helvetica;
+	color: #26107b;
+	margin-left: 20px;
+}
+.info p {
+	margin: 5px;
+}
 .info p:first-child {
 	font-size: 20px;
 	letter-spacing: -0.25px;
-	margin: 0;
+	margin-top: 12px;
 }
 .info p:nth-child(2) {
 	font-size: 12px;
 	letter-spacing: -0.15px;
 	opacity: 0, 7;
-	margin-top: 13px;
+	margin-top: 10px;
 }
+
+.song-info-container-bottom {
+	margin: 32px;
+	margin-top: 12px;
+	display: flex;
+	justify-content: flex-start;
+	width: 100%;
+	min-height: 22px;
+	position: relative;
+}
+
 .buttons {
 	display: flex;
-	flex-direction: row;
-	bottom: 0px;
-	position: absolute;
-	margin: 32px;
+	justify-content: space-between;
+	align-items: center;
+	width: 122px;
+	padding: 0 5px;
 }
-.buttons img {
-	padding-right: 45px;
+.buttons-img {
+	width: 12px;
+	height: 17px;
+	cursor: pointer;
+}
+
+.buttons-img:nth-child(2) {
+	width: 12px;
+	height: 22px;
 }
