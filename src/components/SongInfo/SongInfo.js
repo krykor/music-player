@@ -12,8 +12,8 @@ const SongInfo = () => {
 
 	return (
 		<Consumer>
-			{data => {
-				let filteredData = data.filter(item => item.title === 'Death Race For Love')[0]
+			{({ playlists }) => {
+				let filteredData = playlists.filter((item) => item.title === 'Death Race For Love')[0]
 
 				const { title, author, photo } = filteredData
 
@@ -44,7 +44,7 @@ const SongInfo = () => {
 						</div>
 						<div className="song-info-container-bottom">
 							<div className="buttons">
-								{buttonArray.map(button => (
+								{buttonArray.map((button) => (
 									<img key={button} src={button} className="buttons-img" />
 								))}
 							</div>

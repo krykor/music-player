@@ -6,8 +6,8 @@ import { Consumer } from '../../data/PlaylistContext'
 const Playlist = () => {
 	return (
 		<Consumer>
-			{data =>
-				data.map(
+			{({ playlists }) =>
+				playlists.map(
 					({ title, author, photo }, index) =>
 						index < 4 && (
 							<div className="playlist" key={title}>

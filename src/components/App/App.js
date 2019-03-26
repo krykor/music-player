@@ -29,7 +29,11 @@ class App extends Component {
 					if (error) return <p>Error :(</p>
 
 					return (
-						<Provider value={data.playlists}>
+						<Provider
+							value={{
+								playlists: data.playlists
+							}}
+						>
 							<Card />
 						</Provider>
 					)
