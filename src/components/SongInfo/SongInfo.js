@@ -1,6 +1,8 @@
 import React from 'react'
 import './SongInfo.css'
 
+import { Consumer } from '../../data/PlaylistContext'
+
 import next from '../../assets/Next.svg'
 import pause from '../../assets/Pause.svg'
 import previous from '../../assets/Previous.svg'
@@ -9,34 +11,49 @@ const SongInfo = () => {
 	const buttonArray = [previous, pause, next]
 
 	return (
-		<div className="song-info">
-			<div className="song-info-bg" />
-			<div className="song-info-container-top">
-				<div className="song-info-flex">
-					<img
-						className="cover-img"
-						src="https://i1.sndcdn.com/artworks-000089194882-2f0cp4-t500x500.jpg"
-					/>
-					<img
-						className="cover-img-blur"
-						src="https://i1.sndcdn.com/artworks-000089194882-2f0cp4-t500x500.jpg"
-					/>
-				</div>
+		<Consumer>
+			{data => {
+				let filteredData = data.filter(item => item.title === 'Death Race For Love')[0]
 
-				<div className="info">
-					<p>Test title titletitlet itletitle title</p>
-					<p>Singer</p>
-				</div>
-			</div>
-			<div className="song-info-container-bottom">
-				<div className="buttons">
-					{buttonArray.map(button => (
-						<img key={button} src={button} className="buttons-img" />
-					))}
-				</div>
-				<div>timeline</div>
-			</div>
-		</div>
+				const { title, author, photo } = filteredData
+
+				return (
+					<div className="song-info ">
+						<div
+							className="song-info-bg2"
+							/*style={{
+								background: `url('${photo.url}' )bottom / cover no-repeat`
+							}}*/
+						/>
+						<div
+							className="song-info-bg"
+							style={{
+								background: `url('${photo.url}' )bottom / cover no-repeat`
+							}}
+						/>
+						<div className="song-info-container-top">
+							<div className="song-info-flex">
+								<img className="cover-img" src={photo.url} />
+								<img className="cover-img-blur" src={photo.url} />
+							</div>
+
+							<div className="info">
+								<p>{title}</p>
+								<p>{author}</p>
+							</div>
+						</div>
+						<div className="song-info-container-bottom">
+							<div className="buttons">
+								{buttonArray.map(button => (
+									<img key={button} src={button} className="buttons-img" />
+								))}
+							</div>
+							<div>timeline</div>
+						</div>
+					</div>
+				)
+			}}
+		</Consumer>
 	)
 }
 

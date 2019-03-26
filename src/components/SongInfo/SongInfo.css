@@ -1,22 +1,28 @@
 .song-info {
-	background: #fef4ea;
+	background: rgb(254, 244, 234);
 	width: 100%;
 	height: 241px;
 	position: relative;
+	overflow: hidden;
 }
 
 .song-info-bg {
-	background: url('https://i1.sndcdn.com/artworks-000246862967-g7h6id-t500x500.jpg') bottom / cover
-		no-repeat;
-	width: inherit;
-	height: inherit;
+	background: url('https://i.ytimg.com/vi/4L87BCp26Qg/maxresdefault.jpg');
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center;
+	position: absolute;
+	transform: scale(1.1);
 	filter: blur(32px);
 	opacity: 0.24;
-	position: absolute;
-	overflow: hidden;
 }
-.song-info-bg::before {
+.song-info-bg2 {
+	background: rgb(255, 255, 255);
 	width: 100%;
+	height: 100%;
+	position: absolute;
 }
 
 .song-info-container-top {
@@ -33,7 +39,7 @@
 .cover-img {
 	width: 132px;
 	height: 132px;
-	z-index: 3;
+	z-index: 4;
 	position: relative;
 }
 .cover-img-blur {
@@ -42,14 +48,15 @@
 	left: 32px;
 	position: absolute;
 	filter: blur(15px);
-	opacity: 0.4;
-	z-index: 2;
+	opacity: 0.6;
+	z-index: 3;
 }
 
 .info {
 	font-family: Helvetica;
 	color: #26107b;
 	margin-left: 20px;
+	z-index: 0;
 }
 .info p {
 	margin: 5px;

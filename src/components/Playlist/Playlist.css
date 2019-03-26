@@ -1,7 +1,7 @@
 .playlist {
 	display: flex;
 	justify-content: flex-start;
-	margin: 32px;
+	margin: 25px 32px;
 	width: 100%;
 }
 .playlist img {

@@ -17,6 +17,9 @@ class App extends Component {
 						playlists {
 							title
 							author
+							photo {
+								url
+							}
 						}
 					}
 				`}
@@ -26,7 +29,7 @@ class App extends Component {
 					if (error) return <p>Error :(</p>
 
 					return (
-						<Provider data={data.playlists}>
+						<Provider value={data.playlists}>
 							<Card />
 						</Provider>
 					)
