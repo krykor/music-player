@@ -1,16 +1,16 @@
 import React from 'react'
 import './Playlist.css'
 
-import { Consumer } from '../../data/PlaylistContext'
+import PlaylistContext from '../../data/PlaylistContext'
 
-const Playlist = () => {
+const Playlist = ({ changeId }) => {
 	return (
-		<Consumer>
+		<PlaylistContext.Consumer>
 			{({ playlists }) =>
 				playlists.map(
-					({ title, author, photo }, index) =>
+					({ title, author, photo, id }, index) =>
 						index < 4 && (
-							<div className="playlist" key={title}>
+							<div className="playlist" key={title} onClick={() => changeId(id)}>
 								<img src={photo.url} />
 								<div className="songData">
 									<p>{title}</p>
@@ -20,7 +20,7 @@ const Playlist = () => {
 						)
 				)
 			}
-		</Consumer>
+		</PlaylistContext.Consumer>
 	)
 }
 

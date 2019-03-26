@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Card.css'
 
 import SongInfo from '../SongInfo/SongInfo'
 import Playlist from '../Playlist/Playlist'
 
-const Card = () => {
+const Card = ({ initialId }) => {
+	const [id, updateId] = useState(initialId)
+
+	const changeId = (newId) => updateId(newId)
+
 	return (
 		<div className="card">
-			<SongInfo />
-			<Playlist />
+			<SongInfo songId={id} />
+			<Playlist changeId={changeId} />
 		</div>
 	)
 }

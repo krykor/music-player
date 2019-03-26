@@ -6,7 +6,7 @@ import gql from 'graphql-tag'
 
 import Card from '../Card/Card'
 
-import { Provider } from '../../data/PlaylistContext'
+import PlaylistContext from '../../data/PlaylistContext'
 
 class App extends Component {
 	render() {
@@ -15,6 +15,7 @@ class App extends Component {
 				query={gql`
 					{
 						playlists {
+							id
 							title
 							author
 							photo {
@@ -29,13 +30,13 @@ class App extends Component {
 					if (error) return <p>Error :(</p>
 
 					return (
-						<Provider
+						<PlaylistContext.Provider
 							value={{
 								playlists: data.playlists
 							}}
 						>
-							<Card />
-						</Provider>
+							<Card initialId={data.playlists[0].id} />
+						</PlaylistContext.Provider>
 					)
 				}}
 			</Query>

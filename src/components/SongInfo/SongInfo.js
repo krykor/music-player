@@ -1,19 +1,19 @@
 import React from 'react'
 import './SongInfo.css'
 
-import { Consumer } from '../../data/PlaylistContext'
+import PlaylistContext from '../../data/PlaylistContext'
 
 import next from '../../assets/Next.svg'
 import pause from '../../assets/Pause.svg'
 import previous from '../../assets/Previous.svg'
 
-const SongInfo = () => {
+const SongInfo = ({ songId }) => {
 	const buttonArray = [previous, pause, next]
 
 	return (
-		<Consumer>
+		<PlaylistContext.Consumer>
 			{({ playlists }) => {
-				let filteredData = playlists.filter((item) => item.title === 'Death Race For Love')[0]
+				let filteredData = playlists.filter((item) => item.id === songId)[0]
 
 				const { title, author, photo } = filteredData
 
@@ -53,7 +53,7 @@ const SongInfo = () => {
 					</div>
 				)
 			}}
-		</Consumer>
+		</PlaylistContext.Consumer>
 	)
 }
 
