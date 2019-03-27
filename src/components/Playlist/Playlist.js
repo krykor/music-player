@@ -1,26 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './Playlist.css'
 
-import PlaylistContext from '../../data/PlaylistContext'
+import Context from '../../data/PlaylistContext'
 
-const Playlist = ({ changeId }) => {
-	return (
-		<PlaylistContext.Consumer>
-			{({ playlists }) =>
-				playlists.map(
-					({ title, author, photo, id }, index) =>
-						index < 4 && (
-							<div className="playlist" key={title} onClick={() => changeId(id)}>
-								<img src={photo.url} />
-								<div className="songData">
-									<p>{title}</p>
-									<p>{author}</p>
-								</div>
-							</div>
-						)
-				)
-			}
-		</PlaylistContext.Consumer>
+const Playlist = () => {
+	const { playlists, changeId } = useContext(Context)
+
+	return playlists.map(
+		({ title, author, photo, id }, index) =>
+			index < 4 && (
+				<div className="playlist" key={title} onClick={() => changeId(id)}>
+					<img src={photo.url} alt={title} />
+					<div className="songData">
+						<p>{title}</p>
+						<p>{author}</p>
+					</div>
+				</div>
+			)
 	)
 }
 

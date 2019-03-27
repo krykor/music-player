@@ -6,8 +6,8 @@ const Details = ({ filteredData }) => {
 	return (
 		<div className="song-info-container-top">
 			<div className="song-info-flex">
-				<img className="cover-img" src={photo.url} />
-				<img className="cover-img-blur" src={photo.url} />
+				<img className="cover-img" src={photo.url} alt={title} />
+				<img className="cover-img-blur" src={photo.url} alt={`${title} - cover`} />
 			</div>
 
 			<div className="info">

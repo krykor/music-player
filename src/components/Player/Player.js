@@ -6,12 +6,12 @@ import PlaylistContext from '../../data/PlaylistContext'
 import Details from './Details'
 import Controls from './Controls'
 
-const Player = ({ songId }) => {
+const Player = () => {
 	return (
 		<div className="song-info ">
 			<div className="song-info-bg2" />
 			<PlaylistContext.Consumer>
-				{({ playlists }) => {
+				{({ playlists, songId }) => {
 					let filteredData = playlists.filter((item) => item.id === songId)[0]
 
 					return (
@@ -23,7 +23,7 @@ const Player = ({ songId }) => {
 								}}
 							/>
 							<Details filteredData={filteredData} />
-							<Controls id={songId} />
+							<Controls />
 						</>
 					)
 				}}

@@ -1,14 +1,16 @@
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
+
+import Context from '../../data/PlaylistContext'
 
 import next from '../../assets/Next.svg'
 import pause from '../../assets/Pause.svg'
 import play from '../../assets/Play.svg'
 import previous from '../../assets/Previous.svg'
 
-const Controls = ({ initialStatus }) => {
-	const [isPlay, updateStatus] = useState(initialStatus)
+const Controls = () => {
+	const { isPlay, changeControlStatus } = useContext(Context)
 
-	const buttonStatus = isPlay ? play : pause
+	const buttonStatus = isPlay ? pause : play
 
 	const buttonArray = [previous, buttonStatus, next]
 
@@ -18,9 +20,14 @@ const Controls = ({ initialStatus }) => {
 				{buttonArray.map((button) => (
 					<img
 						key={button}
+						alt={button}
 						src={button}
 						className="buttons-img"
-						onClick={() => updateStatus(isPlay === true ? false : true)}
+						onClick={
+							button === play || button === pause
+								? () => changeControlStatus(isPlay === true ? false : true)
+								: undefined
+						}
 					/>
 				))}
 			</div>

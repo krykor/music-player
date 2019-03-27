@@ -1,20 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './Card.css'
 
 import Player from '../Player/Player'
 import Playlist from '../Playlist/Playlist'
 
-const Card = ({ initialId }) => {
-	const [id, updateId] = useState(initialId)
-
-	const changeId = (newId) => updateId(newId)
-
-	return (
-		<div className="card">
-			<Player songId={id} />
-			<Playlist changeId={changeId} />
-		</div>
-	)
-}
+const Card = () => (
+	<div className="card">
+		<Player />
+		<Playlist />
+	</div>
+)
 
 export default Card
