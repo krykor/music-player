@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Card.css'
 
-import SongInfo from '../SongInfo/SongInfo'
+import Player from '../Player/Player'
 import Playlist from '../Playlist/Playlist'
 
 const Card = ({ initialId }) => {
@@ -11,7 +11,7 @@ const Card = ({ initialId }) => {
 
 	return (
 		<div className="card">
-			<SongInfo songId={id} />
+			<Player songId={id} />
 			<Playlist changeId={changeId} />
 		</div>
 	)
