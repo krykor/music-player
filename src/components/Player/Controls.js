@@ -31,7 +31,14 @@ const Controls = () => {
 					/>
 				))}
 			</div>
-			<div>timeline</div>
+			<div className="song-timeline">
+				<div className="start-time">0:00</div>
+				<div className="bar">
+					<div className="timeline-pointer" />
+					<div className="timeline" />
+				</div>
+				<div className="end-time">1:28</div>
+			</div>
 		</div>
 	)
 }

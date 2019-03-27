@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import './Player.css'
+//import './Player.css'
 
 import Context from '../../data/PlaylistContext'
 
