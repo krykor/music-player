@@ -1,5 +1,5 @@
 import React from 'react'
-//import './Card.css'
+import './Card.css'
 
 import Player from '../Player/Player'
 import Playlist from '../Playlist/Playlist'

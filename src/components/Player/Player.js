@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
-//import './Player.css'
+
+import './Player.css'
 
 import Context from '../../data/PlaylistContext'
 
@@ -9,7 +10,7 @@ import Controls from './Controls'
 const Player = () => {
 	const { playlists, songId } = useContext(Context)
 
-	let filteredData = playlists.filter((item) => item.id === songId)[0]
+	let filteredData = playlists.find((item) => item.id === songId)
 
 	return (
 		<div className="song-info ">
