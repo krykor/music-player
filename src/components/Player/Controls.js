@@ -8,7 +8,7 @@ import play from '../../assets/Play.svg'
 import previous from '../../assets/Previous.svg'
 
 const Controls = () => {
-	const { isPlay, changeControlStatus } = useContext(Context)
+	const { isPlay, changeControlStatus, songIndex, controlSong } = useContext(Context)
 
 	const buttonStatus = isPlay ? pause : play
 
@@ -26,7 +26,11 @@ const Controls = () => {
 						onClick={
 							button === play || button === pause
 								? () => changeControlStatus(isPlay === true ? false : true)
-								: undefined
+								: button === previous
+								? () => controlSong(songIndex - 1)
+								: button === next
+								? () => controlSong(songIndex + 1)
+								: null
 						}
 					/>
 				))}

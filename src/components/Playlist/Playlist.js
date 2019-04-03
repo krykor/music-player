@@ -6,9 +6,9 @@ import Context from '../../data/PlaylistContext'
 const Playlist = () => {
 	const { playlists, changeId } = useContext(Context)
 
-	return playlists.slice(0, 4).map(({ title, author, photo, id }) => (
+	return playlists.slice(0, 4).map(({ title, author, photoS, id }) => (
 		<div className="playlist" key={title} onClick={() => changeId(id)}>
-			<img src={photo.url} alt={title} />
+			<img src={photoS.url} alt={title} />
 			<div className="songData">
 				<p>{title}</p>
 				<p>{author}</p>

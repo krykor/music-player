@@ -16,7 +16,7 @@ const App = () => {
 						id
 						title
 						author
-						photo {
+						photoS {
 							url
 						}
 					}

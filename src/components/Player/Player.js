@@ -8,9 +8,11 @@ import Details from './Details'
 import Controls from './Controls'
 
 const Player = () => {
-	const { playlists, songId } = useContext(Context)
+	const { filteredList } = useContext(Context)
 
-	let filteredData = playlists.find((item) => item.id === songId)
+	//let filteredData = playlists.find((item) => item.id === songId)
+
+	//useEffect(() => songIndex >= 0 && changeIndex(playlists.findIndex((item) => item.id === songId)))
 
 	return (
 		<div className="song-info ">
@@ -18,10 +20,10 @@ const Player = () => {
 			<div
 				className="song-info-bg"
 				style={{
-					background: `url('${filteredData.photo.url}' )bottom / cover no-repeat`
+					background: `url('${filteredList.photoS.url}' )bottom / cover no-repeat`
 				}}
 			/>
-			<Details filteredData={filteredData} />
+			<Details />
 			<Controls />
 		</div>
 	)

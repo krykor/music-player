@@ -1,13 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
-const Details = ({ filteredData }) => {
-	const { title, author, photo } = filteredData
+import Context from '../../data/PlaylistContext'
+
+const Details = () => {
+	const { filteredList } = useContext(Context)
+
+	const { title, author, photoS } = filteredList
 
 	return (
 		<div className="song-info-container-top">
 			<div className="song-info-flex">
-				<img className="cover-img" src={photo.url} alt={title} />
-				<img className="cover-img-blur" src={photo.url} alt={`${title} - cover`} />
+				<img className="cover-img" src={photoS.url} alt={title} />
+				<img className="cover-img-blur" src={photoS.url} alt={`${title} - cover`} />
 			</div>
 
 			<div className="info">

@@ -3,6 +3,7 @@
 	justify-content: flex-start;
 	margin: 25px 32px;
 	width: 100%;
+	cursor: pointer;
 }
 .playlist img {
 	width: 39px;
