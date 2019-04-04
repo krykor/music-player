@@ -1,6 +1,13 @@
 import React, { useReducer, useEffect } from 'react'
 
-import { Reducer, CHANGE_ID, CHANGE_CONTROL_STATUS, CHANGE_FILTER } from './Reducer'
+import {
+	Reducer,
+	CHANGE_ID,
+	CHANGE_CONTROL_STATUS,
+	CHANGE_FILTER,
+	CHANGE_SONG_TIME,
+	CHECK_ANIMATION_TIME
+} from './Reducer'
 
 import PlaylistContext from './PlaylistContext'
 
@@ -9,7 +16,13 @@ const GlobalState = (props) => {
 		songId: props.data.playlists[0].id,
 		isPlay: false,
 		songIndex: 0,
-		filteredList: props.data.playlists[0]
+		filteredList: props.data.playlists[0],
+		songTime: {
+			currentTime: '0:00',
+			duration: '0:00',
+			animationTime: 0
+		},
+		animationTime: 0
 	}
 
 	const [playerState, dispatch] = useReducer(Reducer, inicialState)
@@ -26,6 +39,14 @@ const GlobalState = (props) => {
 		dispatch({ type: CHANGE_FILTER, filteredList, songIndex })
 	}
 
+	const changeSongTime = (songTime) => {
+		dispatch({ type: CHANGE_SONG_TIME, songTime })
+	}
+
+	const checkAnimationTime = (animationTime) => {
+		dispatch({ type: CHECK_ANIMATION_TIME, animationTime })
+	}
+
 	const controlSong = (index) =>
 		index >= 0 && index < props.data.playlists.length - 1
 			? changeId(props.data.playlists[index].id)
@@ -38,6 +59,16 @@ const GlobalState = (props) => {
 		)
 	}, [playerState.songId])
 
+	useEffect(() => {
+		const { currentTime, duration } = playerState.songTime
+		currentTime === duration && changeControlStatus(false)
+		//checkAnimationTime(playerState.songTime.animationTime)
+	}, [playerState.songTime])
+
+	useEffect(() => {
+		checkAnimationTime(playerState.songTime.animationTime)
+	}, [playerState.songTime.animationTime])
+
 	return (
 		<PlaylistContext.Provider
 			value={{
@@ -48,7 +79,10 @@ const GlobalState = (props) => {
 				changeControlStatus,
 				songIndex: playerState.songIndex,
 				filteredList: playerState.filteredList,
-				controlSong
+				controlSong,
+				songTime: playerState.songTime,
+				changeSongTime,
+				animationTime: playerState.animationTime
 			}}
 		>
 			{props.children}
