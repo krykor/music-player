@@ -6,13 +6,10 @@ import Context from '../../data/PlaylistContext'
 
 import Details from './Details'
 import Controls from './Controls'
+import Audio from './Audio'
 
 const Player = () => {
 	const { filteredList } = useContext(Context)
-
-	//let filteredData = playlists.find((item) => item.id === songId)
-
-	//useEffect(() => songIndex >= 0 && changeIndex(playlists.findIndex((item) => item.id === songId)))
 
 	return (
 		<div className="song-info ">
@@ -23,6 +20,7 @@ const Player = () => {
 					background: `url('${filteredList.photoS.url}' )bottom / cover no-repeat`
 				}}
 			/>
+			<Audio />
 			<Details />
 			<Controls />
 		</div>

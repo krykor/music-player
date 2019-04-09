@@ -1,61 +1,30 @@
-import React, { useContext, useEffect } from 'react'
-import styled, { keyframes, css } from 'styled-components'
+import React, { useContext } from 'react'
+import styled, { keyframes } from 'styled-components'
+
+import Time from './Time'
 
 import Context from '../../data/PlaylistContext'
 
-import Audio from './Audio'
-
 import SVGIcon from '../../assets/svgIcons'
-import PlaylistContext from '../../data/PlaylistContext'
 
-/*className="song-timeline">
-				<div className="start-time">{songTime.currentTime}</div>
-				<div className="bar">
-					<div className="timeline-pointer" />
-					<div className="timeline" />
-				</div>
-				<div className="end-time"></div>*/
+const SongTimeline = styled.div`
+	width: 61%;
+	max-width: 300px;
+	height: 16px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+`
 
-const Controls = () => {
-	const {
-		isPlay,
-		changeControlStatus,
-		songIndex,
-		controlSong,
-		songTime,
-		animationTime
-	} = useContext(Context)
+const Bar = styled.div`
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	cursor: pointer;
+`
 
-	useEffect(() => {
-		const TimelinePointer = styled.div`
-		${(props) =>
-			props.play &&
-			css`
-				animation: ${progress} ${animationTime}s linear infinite;
-			`}
-
-		animation: ${progress} ${animationTime}s linear infinite;
-	`
-	}, [animationTime])
-
-	const SongTimeline = styled.div`
-		width: 61%;
-		max-width: 300px;
-		height: 16px;
-		display: flex;
-		align-items: center;
-		justify-content: flex-end;
-	`
-
-	const Bar = styled.div`
-		width: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: flex-start;
-		cursor: pointer;
-	`
-
-	const progress = keyframes`
+const progress = keyframes`
 	from {
 		margin-left: 0px
 	}
@@ -64,44 +33,37 @@ const Controls = () => {
 		margin-left: 180px;
 	}
 `
-	const TimelinePointer = styled.div`
-		position: absolute;
-		width: 7px;
-		height: 7px;
-		background-color: rgba(38, 16, 123);
-		border-radius: 50%;
-		${(props) => {
-			props.play &&
-				css`
-					animation: ${progress} ${animationTime}s linear infinite;
-				` &&
-				console.log('paused')
-		}};
-	`
+const TimelinePointer = styled.div`
+	position: absolute;
+	width: 7px;
+	height: 7px;
+	background-color: rgba(38, 16, 123);
+	border-radius: 50%;
 
-	const Timeline = styled.div`
-		max-width: 192px;
-		width: 100%;
-		height: 3px;
-		background-color: rgb(55, 32, 135, 0.2);
-		border-radius: 2px;
-	`
+	animation-name: ${(props) => (props.animationStopped ? 'none' : progress)};
+	animation-duration: ${(props) => props.animationTimeline}s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	animation-play-state: ${(props) => (!props.play ? 'paused' : 'running')};
+`
 
-	/*animation: ${progress} s linear infinite;
-	${(props) =>
-			props.play &&
-			css`
-				transition: ${animationTime}s;
-				margin-left: 50% !important;
-			`}*/
+const Timeline = styled.div`
+	max-width: 192px;
+	width: 100%;
+	height: 3px;
+	background-color: rgb(55, 32, 135, 0.2);
+	border-radius: 2px;
+`
 
-	const buttonStatus = isPlay ? 'pause' : 'play'
+const Controls = () => {
+	const { isPlay, changeControlStatus, songIndex, controlSong, animationTime } = useContext(Context)
+
+	const buttonStatus = isPlay === 'stopped' ? 'play' : isPlay === 'playing' ? 'pause' : 'play'
 
 	const buttonArray = ['previous', buttonStatus, 'next']
 
 	return (
 		<div className="song-info-container-bottom">
-			<Audio />
 			<div className="buttons">
 				{buttonArray.map((button) => (
 					<SVGIcon
@@ -112,7 +74,7 @@ const Controls = () => {
 						className="buttons-img"
 						onClick={
 							button === 'play' || button === 'pause'
-								? () => changeControlStatus(isPlay === true ? false : true)
+								? () => changeControlStatus(isPlay === 'playing' ? 'paused' : 'playing')
 								: button === 'previous'
 								? () => controlSong(songIndex - 1)
 								: button === 'next'
@@ -123,12 +85,16 @@ const Controls = () => {
 				))}
 			</div>
 			<SongTimeline>
-				<div className="start-time">{songTime.currentTime}</div>
+				<Time showTime={'start-time'} />
 				<Bar>
-					<TimelinePointer play={isPlay ? true : false} />
+					<TimelinePointer
+						play={isPlay === 'playing' ? true : false}
+						animationTimeline={animationTime}
+						animationStopped={isPlay === 'stopped'}
+					/>
 					<Timeline />
 				</Bar>
-				<div className="end-time">{songTime.duration}</div>
+				<Time showTime={'end-time'} />
 			</SongTimeline>
 		</div>
 	)

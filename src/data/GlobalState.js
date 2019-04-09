@@ -14,13 +14,12 @@ import PlaylistContext from './PlaylistContext'
 const GlobalState = (props) => {
 	const inicialState = {
 		songId: props.data.playlists[0].id,
-		isPlay: false,
+		isPlay: 'stopped',
 		songIndex: 0,
 		filteredList: props.data.playlists[0],
 		songTime: {
 			currentTime: '0:00',
-			duration: '0:00',
-			animationTime: 0
+			duration: '0:00'
 		},
 		animationTime: 0
 	}
@@ -57,17 +56,13 @@ const GlobalState = (props) => {
 			props.data.playlists.find((item) => item.id === playerState.songId),
 			props.data.playlists.findIndex((item) => item.id === playerState.songId)
 		)
+		changeControlStatus('stopped')
 	}, [playerState.songId])
 
 	useEffect(() => {
 		const { currentTime, duration } = playerState.songTime
-		currentTime === duration && changeControlStatus(false)
-		//checkAnimationTime(playerState.songTime.animationTime)
+		currentTime === duration && changeControlStatus('stopped')
 	}, [playerState.songTime])
-
-	useEffect(() => {
-		checkAnimationTime(playerState.songTime.animationTime)
-	}, [playerState.songTime.animationTime])
 
 	return (
 		<PlaylistContext.Provider
@@ -82,7 +77,8 @@ const GlobalState = (props) => {
 				controlSong,
 				songTime: playerState.songTime,
 				changeSongTime,
-				animationTime: playerState.animationTime
+				animationTime: playerState.animationTime,
+				checkAnimationTime
 			}}
 		>
 			{props.children}

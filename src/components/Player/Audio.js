@@ -1,59 +1,52 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 
 import Context from '../../data/PlaylistContext'
 
 import audio from '../../assets/audio/sample.mp3'
 
-const Audio = () => {
-	const { isPlay, changeSongTime, songTime, songIndex } = useContext(Context)
+function Audio() {
+	const player = useRef()
 
-	const getTime = (time) =>
-		!isNaN(time) && Math.floor(time / 60) + ':' + ('0' + Math.floor(time % 60)).slice(-2)
-
-	useEffect(() => {
-		//let audio222 = document.getElementById('audio')
-		/*audio.addEventListener('timeupdate', (e) => {
-			changeSongTime({
-				//currentTime: getTime(e.target.currentTime),
-				duration: getTime(e.target.duration)
-				//animationTime: e.target.duration
-			})
-		})*/
-
-		/*changeSongTime({
-			//currentTime: getTime(e.target.currentTime),
-			duration: getTime(audio222 && audio222.duration)
-			//animationTime: e.target.duration
-		})*/
-
-		/*const audioFunction = (e) => {
-			changeSongTime({
-				//currentTime: getTime(e.target.currentTime),
-				duration: getTime(e.target.duration)
-				//animationTime: e.target.duration
-			})
-			console.log('ok')
-		}*/
-
-		///isPlay ? audio && audio.play() : audio && audio.pause()
-		console.log(audio)
-	}, [isPlay])
+	const { isPlay, changeSongTime, songIndex, checkAnimationTime } = useContext(Context)
 
 	useEffect(() => {
-		//let audio22 = document.getElementById('audio')
-		/*changeSongTime({
-			duration: getTime(audio && audio.duration)
-		})*/
-		//console.log(audio && audio.duration)
+		if (audio) {
+			player.current.src = audio
+		}
+
+		return () => {
+			if (audio) {
+				player.current.src = null
+			}
+		}
 	}, [songIndex])
 
-	//setTimeout(console.log(audio222 && audio222.duration), 4000)
+	useEffect(() => {
+		isPlay === 'playing' && checkAnimationTime(player.current.duration)
 
-	return (
-		<audio playing="true" id="audio">
-			<source src={audio} type="audio/mpeg" />
-		</audio>
-	)
+		player.current.addEventListener('timeupdate', (e) => {
+			changeSongTime({
+				currentTime: e.target.currentTime,
+				duration: e.target.duration
+			})
+		})
+
+		if (isPlay === 'stopped') {
+			player.current.pause()
+			player.current.currentTime = 0
+		} else if (isPlay === 'playing') {
+			player.current.play()
+		} else {
+			player.current.pause()
+		}
+
+		return () => {
+			player.current.removeEventListener('timeupdate', () => {})
+			player.current.pause()
+		}
+	}, [isPlay])
+
+	return <audio ref={player} />
 }
 
 export default Audio
