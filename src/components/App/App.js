@@ -1,5 +1,6 @@
 import React from 'react'
-import './App.css'
+//import './App.css'
+import GlobalStyle from './GlobalStyle'
 
 import { Query } from 'react-apollo'
 import gql from 'graphql-tag'
@@ -29,6 +30,7 @@ const App = () => {
 
 				return (
 					<GlobalState data={data}>
+						<GlobalStyle />
 						<Card />
 					</GlobalState>
 				)

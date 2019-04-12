@@ -1,14 +1,27 @@
 import React from 'react'
-import './Card.css'
+import styled from 'styled-components'
+
+//import './Card.css'
 
 import Player from '../Player/Player'
 import Playlist from '../Playlist/Playlist'
 
+const StyledCard = styled.div`
+	width: 472px;
+	height: 515px;
+	background-color: #fff;
+
+	@media (max-width: 500px) {
+		width: 100%;
+		height: 100%;
+	}
+`
+
 const Card = () => (
-	<div className="card">
+	<StyledCard>
 		<Player />
 		<Playlist />
-	</div>
+	</StyledCard>
 )
 
 export default Card
