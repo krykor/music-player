@@ -61,8 +61,6 @@ const Details = () => {
 		}
 	} = useContext(Context)
 
-	console.log(title)
-
 	return (
 		<StyledDetails>
 			<Flex>

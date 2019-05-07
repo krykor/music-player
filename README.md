@@ -1,68 +1,51 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Music player
 
-## Available Scripts
+## Table of contents
 
-In the project directory, you can run:
+- [General info](#general-info)
+- [Technologies](#technologies)
+- [Features](#features)
+- [To-do](#to-do-list)
 
-### `npm start`
+## General info
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+_Music player_ - recruitment task in one of the companies for the position of
+_Frontend Developer_. The task was to create a music player widget [similar to the design](https://dribbble.com/shots/3175482-Music-Player-Freebie).
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+I based the project on **React.js v16.8 using Hooks**. I used the **useReducer to manage the global state of the application**. Then I sent the data using useContext. I downloaded data from Headless CMS (GraphCMS) using Apollo and forwarded to the global state.
 
-### `npm test`
+### On Macbook
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![music player widget](/github/screen.png 'music player widget')
 
-### `npm run build`
+## Demo
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[Here](https://react.adssi.pl) is a working demo.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Technologies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Aplication is created with:
 
-### `npm run eject`
+- ReactJS 16.8 **with Hooks** (useContext, useReducer, useRef)
+- Create React App (Babel, Webpack)
+- GraphQL 14 with Apollo 2.5.1
+- GraphCMS
+- Styled-components 4.2
+- JS with ES6+
+- GIT
+- NPM
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Features
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- simply music player widget with support for mobile devices
+- dynamic change of the song
+- showing the current time (with timeline), title and picture
+- dynamic edition of styles with **Styled-components**
+- Headless CMS: **GraphCMS with GraphQL**
+- using React Hooks
+- **managing the global state of the application** using useReducer and useContext
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## To-do list:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- scroll the song using the timeline
+- adding a song database
