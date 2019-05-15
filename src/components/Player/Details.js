@@ -1,55 +1,55 @@
 import React, { useContext } from 'react'
-import styled from 'styled-components'
 
 import Context from '../../data/PlaylistContext'
+import styled from 'styled-components'
 
 const StyledDetails = styled.div`
-	padding: 32px;
-	padding-bottom: 12px;
 	display: flex;
 	justify-content: flex-start;
+	padding: 32px;
+	padding-bottom: 12px;
 `
 const Flex = styled.div`
-	width: 132px;
 	height: 132px;
+	width: 132px;
 `
 const Img = styled.img`
-	width: 132px;
 	height: 132px;
-	z-index: 4;
 	position: relative;
+	width: 132px;
+	z-index: 4;
 `
 
 const ImgBlur = styled.img`
-	width: 132px;
-	height: 132px;
-	left: 32px;
 	position: absolute;
 	filter: blur(15px);
+	height: 132px;
+	left: 32px;
 	opacity: 0.6;
+	width: 132px;
 	z-index: 3;
 `
 
 const Song = styled.div`
-	font-family: Helvetica;
-	color: #26107b;
+	color: ${(props) => props.theme.color.primary};
+	font-family: ${(props) => props.theme.font.family};
 	margin-left: 20px;
 	z-index: 0;
 `
 
 const Title = styled.p`
-	font-size: 20px;
+	font-size: ${(props) => props.theme.font.size.title};
 	letter-spacing: -0.25px;
 	margin: 5px;
 	margin-top: 12px;
 `
 
 const Author = styled.p`
-	font-size: 12px;
+	font-size: ${(props) => props.theme.font.size.big};
 	letter-spacing: -0.15px;
-	opacity: 0, 7;
 	margin: 5px;
 	margin-top: 10px;
+	opacity: 0, 7;
 `
 
 const Details = () => {

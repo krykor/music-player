@@ -1,15 +1,15 @@
 import React, { useContext } from 'react'
-import styled from 'styled-components'
 
 import Context from '../../data/PlaylistContext'
+import styled from 'styled-components'
 
 const StyledTime = styled.div`
-	font-size: 10px;
-	opacity: 0.7;
-	color: #26107b;
-	display: flex;
 	align-items: center;
+	color: ${(props) => props.theme.color.primary};
+	display: flex;
+	font-size: ${(props) => props.theme.font.size.small};
 	margin-bottom: 1px;
+	opacity: 0.7;
 	${(props) => `margin-${props.margin}`}: 15px;
 `
 
@@ -26,13 +26,6 @@ const Time = ({ margin }) => {
 
 	return (
 		<StyledTime margin={margin}>
-			{/*margin === 'right'
-				? songTime.currentTime > 0
-					? getTime(songTime.currentTime)
-					: '0:00'
-				: songTime.duration > 0
-				? getTime(songTime.duration)
-	: '0:00'*/}
 			<SongTimeComponent songTime={songTime} />
 		</StyledTime>
 	)
