@@ -1,12 +1,12 @@
 import React from 'react'
-//import './App.css'
-import GlobalStyle from './GlobalStyle'
 
-import { Query } from 'react-apollo'
-import gql from 'graphql-tag'
-
-import GlobalState from '../../data/GlobalState'
 import Card from '../Card/Card'
+import GlobalStyle from '../../assets/style/GlobalStyle'
+import GlobalState from '../../data/GlobalState'
+import gql from 'graphql-tag'
+import theme from '../../assets/style/theme'
+import { ThemeProvider } from 'styled-components'
+import { Query } from 'react-apollo'
 
 const App = () => {
 	return (
@@ -31,7 +31,9 @@ const App = () => {
 				return (
 					<GlobalState data={data}>
 						<GlobalStyle />
-						<Card />
+						<ThemeProvider theme={theme}>
+							<Card />
+						</ThemeProvider>
 					</GlobalState>
 				)
 			}}

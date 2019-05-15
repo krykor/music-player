@@ -1,13 +1,10 @@
 import React, { useContext } from 'react'
-import styled from 'styled-components'
 
-//import './Player.css'
-
-import Context from '../../data/PlaylistContext'
-
-import Details from './Details'
-import Controls from './Controls'
 import Audio from './Audio'
+import Context from '../../data/PlaylistContext'
+import Controls from './Controls'
+import Details from './Details'
+import styled from 'styled-components'
 
 const StyledPlayer = styled.div`
 	background: rgb(254, 244, 234);
@@ -30,9 +27,9 @@ const StyledPlayerBg = styled.div`
 
 	::after {
 		background: rgb(255, 255, 255);
-	width: 100%;
-	height: 100%;
-	position: absolute;
+		width: 100%;
+		height: 100%;
+		position: absolute;
 	}
 `
 const StyledPlayerBgColor = styled.div`

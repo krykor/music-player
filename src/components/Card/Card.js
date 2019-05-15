@@ -1,8 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-
-//import './Card.css'
-
 import Player from '../Player/Player'
 import Playlist from '../Playlist/Playlist'
 

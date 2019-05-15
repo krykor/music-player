@@ -1,27 +1,25 @@
 import React, { useContext } from 'react'
-import styled, { keyframes } from 'styled-components'
-
-import Time from './Time'
 
 import Context from '../../data/PlaylistContext'
-
-import SVGIcon from '../../assets/svgIcons'
+import styled, { keyframes } from 'styled-components'
+import SVGIcon from '../../assets/icons/svgIcons'
+import Time from './Time'
 
 const StyledControls = styled.div`
-	margin: 32px;
-	margin-top: 12px;
 	display: flex;
 	justify-content: space-between;
+	margin: 32px;
+	margin-top: 12px;
 	min-height: 22px;
 	position: relative;
 `
 
 const Buttons = styled.div`
+	align-items: center;
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
-	width: 122px;
 	padding: 0 5px;
+	width: 122px;
 
 	svg {
 		width: 12px;
@@ -36,20 +34,20 @@ const Buttons = styled.div`
 `
 
 const SongTimeline = styled.div`
-	width: 61%;
-	max-width: 300px;
-	height: 16px;
-	display: flex;
 	align-items: center;
+	display: flex;
+	height: 16px;
 	justify-content: flex-end;
+	max-width: 300px;
+	width: 61%;
 `
 
 const Bar = styled.div`
-	width: 100%;
-	display: flex;
 	align-items: center;
-	justify-content: flex-start;
 	cursor: pointer;
+	display: flex;
+	justify-content: flex-start;
+	width: 100%;
 `
 
 const progress = keyframes`
@@ -62,25 +60,24 @@ const progress = keyframes`
 	}
 `
 const TimelinePointer = styled.div`
-	position: absolute;
-	width: 7px;
-	height: 7px;
-	background-color: rgb(38, 16, 123);
-	border-radius: 50%;
-
-	animation-name: ${(props) => (props.animationStopped ? 'none' : progress)};
 	animation-duration: ${(props) => props.animationTimeline}s;
 	animation-iteration-count: infinite;
-	animation-timing-function: linear;
+	animation-name: ${(props) => (props.animationStopped ? 'none' : progress)};
 	animation-play-state: ${(props) => (!props.play ? 'paused' : 'running')};
+	animation-timing-function: linear;
+	background-color: ${(props) => props.theme.color.pointer};
+	border-radius: 50%;
+	position: absolute;
+	height: 7px;
+	width: 7px;
 `
 
 const Timeline = styled.div`
+	background-color: ${(props) => props.theme.color.timeline};
+	border-radius: 2px;
+	height: 3px;
 	max-width: 192px;
 	width: 100%;
-	height: 3px;
-	background-color: rgba(55, 32, 135, 0.2);
-	border-radius: 2px;
 `
 
 const Controls = () => {

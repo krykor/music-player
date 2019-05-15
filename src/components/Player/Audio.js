@@ -1,8 +1,7 @@
 import React, { useContext, useEffect, useRef } from 'react'
 
-import Context from '../../data/PlaylistContext'
-
 import audio from '../../assets/audio/sample.mp3'
+import Context from '../../data/PlaylistContext'
 
 function Audio() {
 	const player = useRef()
