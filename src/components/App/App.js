@@ -8,6 +8,9 @@ import theme from '../../assets/style/theme'
 import { ThemeProvider } from 'styled-components'
 import { Query } from 'react-apollo'
 
+import { Provider } from 'react-redux'
+import store from '../../store'
+
 const App = () => {
 	return (
 		<Query
@@ -29,12 +32,14 @@ const App = () => {
 				if (error) return <p>Error :(</p>
 
 				return (
-					<GlobalState data={data}>
-						<GlobalStyle />
-						<ThemeProvider theme={theme}>
-							<Card />
-						</ThemeProvider>
-					</GlobalState>
+					<Provider store={store}>
+						<GlobalState data={data}>
+							<GlobalStyle />
+							<ThemeProvider theme={theme}>
+								<Card />
+							</ThemeProvider>
+						</GlobalState>
+					</Provider>
 				)
 			}}
 		</Query>

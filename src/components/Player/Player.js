@@ -15,7 +15,7 @@ const StyledPlayer = styled.div`
 `
 
 const StyledPlayerBg = styled.div`
-	background: url('${(props) => props.background}' )bottom / cover no-repeat;
+	background: url('${props => props.background}' )bottom / cover no-repeat;
 	position: absolute;
 	width: 100%;
 	height: 100%;
