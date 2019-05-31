@@ -1,8 +1,7 @@
 import React from 'react'
 
-import Card from '../Card/Card'
+import Card from '../Card/ContainerCard'
 import GlobalStyle from '../../assets/style/GlobalStyle'
-import GlobalState from '../../data/GlobalState'
 import gql from 'graphql-tag'
 import theme from '../../assets/style/theme'
 import { ThemeProvider } from 'styled-components'
@@ -33,12 +32,10 @@ const App = () => {
 
 				return (
 					<Provider store={store}>
-						<GlobalState data={data}>
-							<GlobalStyle />
-							<ThemeProvider theme={theme}>
-								<Card />
-							</ThemeProvider>
-						</GlobalState>
+						<GlobalStyle />
+						<ThemeProvider theme={theme}>
+							<Card data={data} />
+						</ThemeProvider>
 					</Provider>
 				)
 			}}

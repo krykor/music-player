@@ -1,6 +1,5 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
-import Context from '../../data/PlaylistContext'
 import styled from 'styled-components'
 
 const StyledPlaylist = styled.div`
@@ -18,29 +17,27 @@ const Img = styled.img`
 `
 
 const SongData = styled.div`
-	font-family: ${(props) => props.theme.font.family};
+	font-family: ${props => props.theme.font.family};
 	margin-left: 10px;
 	min-width: 40px;
 	width: 80%;
 `
 
 const Title = styled.p`
-	color: ${(props) => props.theme.color.gray};
-	font-size: ${(props) => props.theme.font.size.big};
+	color: ${props => props.theme.color.gray};
+	font-size: ${props => props.theme.font.size.big};
 	letter-spacing: -0.15px;
 	margin: 4px;
 `
 
 const Author = styled.p`
-	color: ${(props) => props.theme.color.secondary};
-	font-size: ${(props) => props.theme.font.size.small};
+	color: ${props => props.theme.color.secondary};
+	font-size: ${props => props.theme.font.size.small};
 	margin: 4px;
 `
 
-const Playlist = () => {
-	const { playlists, changeId } = useContext(Context)
-
-	return playlists.slice(0, 4).map(({ title, author, photoS, id }) => (
+const Playlist = ({ playlist, changeId }) =>
+	playlist.slice(0, 4).map(({ title, author, photoS, id }) => (
 		<StyledPlaylist key={title} onClick={() => changeId(id)}>
 			<Img src={photoS.url} alt={title} />
 			<SongData>
@@ -49,6 +46,5 @@ const Playlist = () => {
 			</SongData>
 		</StyledPlaylist>
 	))
-}
 
 export default Playlist

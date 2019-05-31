@@ -12,21 +12,18 @@
 _Music player_ - recruitment task in one of the companies for the position of
 _Frontend Developer_. The task was to create a music player widget [similar to the design](https://dribbble.com/shots/3175482-Music-Player-Freebie).
 
-I based the project on **React.js v16.8 using Hooks**. I used the **useReducer to manage the global state of the application**. Then I sent the data using useContext. I downloaded data from Headless CMS (GraphCMS) using Apollo and forwarded to the global state.
+I based the project on **React.js v16.8 using Hooks** and HoC. I used the **Redux v4 to manage the global state of the application**. I downloaded data from Headless CMS (GraphCMS) using Apollo and forwarded to the global state.
 
 ### On Macbook
 
 ![music player widget](/github/screen.png 'music player widget')
 
-## Demo
-
-[Here](https://react.adssi.pl) is a working demo.
-
 ## Technologies
 
 Aplication is created with:
 
-- ReactJS 16.8 **with Hooks** (useContext, useReducer, useRef)
+- ReactJS 16.8 **with Hooks** (useEffects, useRef) and HoC
+- Redux 4 with react-redux 7
 - Create React App (Babel, Webpack)
 - GraphQL 14 with Apollo 2.5.1
 - GraphCMS

@@ -1,12 +1,9 @@
-import React, { useContext, useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import audio from '../../assets/audio/sample.mp3'
-import Context from '../../data/PlaylistContext'
 
-function Audio() {
+function Audio({ isPlay, changeSongTime, songIndex, checkAnimationTime }) {
 	const player = useRef()
-
-	const { isPlay, changeSongTime, songIndex, checkAnimationTime } = useContext(Context)
 
 	useEffect(() => {
 		if (audio) {
@@ -23,7 +20,7 @@ function Audio() {
 	useEffect(() => {
 		isPlay === 'playing' && checkAnimationTime(player.current.duration)
 
-		player.current.addEventListener('timeupdate', (e) => {
+		player.current.addEventListener('timeupdate', e => {
 			changeSongTime({
 				currentTime: e.target.currentTime,
 				duration: e.target.duration

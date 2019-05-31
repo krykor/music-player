@@ -1,10 +1,15 @@
 import types from './types'
 
 const INITIAL_STATE = {
+	playlist: [],
 	songId: 0,
 	isPlay: 'stopped',
 	songIndex: 0,
-	filteredList: {},
+	filteredList: {
+		title: '',
+		author: '',
+		photoS: { url: '' }
+	},
 	songTime: {
 		currentTime: '0:00',
 		duration: '0:00'
@@ -24,6 +29,8 @@ export const playerReducer = (state = INITIAL_STATE, action) => {
 			return { ...state, songTime: action.songTime }
 		case types.CHECK_ANIMATION_TIME:
 			return { ...state, animationTime: action.animationTime }
+		case types.GET_DATA:
+			return { ...state, playlist: action.playlist }
 		default:
 			return state
 	}

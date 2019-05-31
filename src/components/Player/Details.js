@@ -1,6 +1,5 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
-import Context from '../../data/PlaylistContext'
 import styled from 'styled-components'
 
 const StyledDetails = styled.div`
@@ -31,48 +30,44 @@ const ImgBlur = styled.img`
 `
 
 const Song = styled.div`
-	color: ${(props) => props.theme.color.primary};
-	font-family: ${(props) => props.theme.font.family};
+	color: ${props => props.theme.color.primary};
+	font-family: ${props => props.theme.font.family};
 	margin-left: 20px;
 	z-index: 0;
 `
 
 const Title = styled.p`
-	font-size: ${(props) => props.theme.font.size.title};
+	font-size: ${props => props.theme.font.size.title};
 	letter-spacing: -0.25px;
 	margin: 5px;
 	margin-top: 12px;
 `
 
 const Author = styled.p`
-	font-size: ${(props) => props.theme.font.size.big};
+	font-size: ${props => props.theme.font.size.big};
 	letter-spacing: -0.15px;
 	margin: 5px;
 	margin-top: 10px;
 	opacity: 0, 7;
 `
 
-const Details = () => {
-	const {
-		filteredList: {
-			title,
-			author,
-			photoS: { url }
-		}
-	} = useContext(Context)
-
-	return (
-		<StyledDetails>
-			<Flex>
-				<Img src={url} alt={title} />
-				<ImgBlur src={url} alt={`${title} - cover`} />
-			</Flex>
-			<Song>
-				<Title>{title}</Title>
-				<Author>{author}</Author>
-			</Song>
-		</StyledDetails>
-	)
-}
+const Details = ({
+	filteredList: {
+		title,
+		author,
+		photoS: { url }
+	}
+}) => (
+	<StyledDetails>
+		<Flex>
+			<Img src={url} alt={title} />
+			<ImgBlur src={url} alt={`${title} - cover`} />
+		</Flex>
+		<Song>
+			<Title>{title}</Title>
+			<Author>{author}</Author>
+		</Song>
+	</StyledDetails>
+)
 
 export default Details

@@ -1,7 +1,9 @@
 import React from 'react'
+
+import ContainerEffects from './Container'
 import styled from 'styled-components'
-import Player from '../Player/Player'
-import Playlist from '../Playlist/Playlist'
+import Player from '../Player/ContainerPlayer'
+import Playlist from '../Playlist/ContainerPlaylist'
 
 const StyledCard = styled.div`
 	width: 472px;
@@ -21,4 +23,4 @@ const Card = () => (
 	</StyledCard>
 )
 
-export default Card
+export default ContainerEffects(Card)

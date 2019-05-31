@@ -26,10 +26,16 @@ const checkAnimationTime = animationTime => ({
 	animationTime
 })
 
+const getData = playlist => ({
+	type: types.GET_DATA,
+	playlist
+})
+
 export default {
 	changeId,
 	changeControlStatus,
 	changeFilter,
 	changeSongTime,
-	checkAnimationTime
+	checkAnimationTime,
+	getData
 }

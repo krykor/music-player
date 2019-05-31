@@ -1,23 +1,20 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
-import Context from '../../data/PlaylistContext'
 import styled from 'styled-components'
 
 const StyledTime = styled.div`
 	align-items: center;
-	color: ${(props) => props.theme.color.primary};
+	color: ${props => props.theme.color.primary};
 	display: flex;
-	font-size: ${(props) => props.theme.font.size.small};
+	font-size: ${props => props.theme.font.size.small};
 	margin-bottom: 1px;
 	opacity: 0.7;
-	${(props) => `margin-${props.margin}`}: 15px;
+	${props => `margin-${props.margin}`}: 15px;
 `
 
-const Time = ({ margin }) => {
-	const { songTime } = useContext(Context)
-
+const Time = ({ margin, songTime }) => {
 	const SongTimeComponent = ({ songTime: { currentTime, duration } }) => {
-		const getTime = (time) =>
+		const getTime = time =>
 			!isNaN(time) && Math.floor(time / 60) + ':' + ('0' + Math.floor(time % 60)).slice(-2)
 
 		if (margin === 'right') return currentTime > 0 ? getTime(currentTime) : '0:00'

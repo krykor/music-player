@@ -1,9 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
-import Audio from './Audio'
-import Context from '../../data/PlaylistContext'
-import Controls from './Controls'
-import Details from './Details'
+import Audio from './ContainerAudio'
+import Controls from './ContainerControls'
+import Details from './ContainerDetails'
 import styled from 'styled-components'
 
 const StyledPlayer = styled.div`
@@ -39,18 +38,14 @@ const StyledPlayerBgColor = styled.div`
 	position: absolute;
 `
 
-const Player = () => {
-	const { filteredList } = useContext(Context)
-
-	return (
-		<StyledPlayer className="song-info ">
-			<StyledPlayerBgColor />
-			<StyledPlayerBg background={filteredList.photoS.url} />
-			<Audio />
-			<Details />
-			<Controls />
-		</StyledPlayer>
-	)
-}
+const Player = ({ filteredList }) => (
+	<StyledPlayer className="song-info ">
+		<StyledPlayerBgColor />
+		<StyledPlayerBg background={filteredList.photoS.url} />
+		<Audio />
+		<Details />
+		<Controls />
+	</StyledPlayer>
+)
 
 export default Player

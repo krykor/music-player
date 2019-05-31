@@ -1,9 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 
-import Context from '../../data/PlaylistContext'
 import styled, { keyframes } from 'styled-components'
 import SVGIcon from '../../assets/icons/svgIcons'
-import Time from './Time'
+import Time from './ContainerTime'
 
 const StyledControls = styled.div`
 	display: flex;
@@ -60,12 +59,12 @@ const progress = keyframes`
 	}
 `
 const TimelinePointer = styled.div`
-	animation-duration: ${(props) => props.animationTimeline}s;
+	animation-duration: ${props => props.animationTimeline}s;
 	animation-iteration-count: infinite;
-	animation-name: ${(props) => (props.animationStopped ? 'none' : progress)};
-	animation-play-state: ${(props) => (!props.play ? 'paused' : 'running')};
+	animation-name: ${props => (props.animationStopped ? 'none' : progress)};
+	animation-play-state: ${props => (!props.play ? 'paused' : 'running')};
 	animation-timing-function: linear;
-	background-color: ${(props) => props.theme.color.pointer};
+	background-color: ${props => props.theme.color.pointer};
 	border-radius: 50%;
 	position: absolute;
 	height: 7px;
@@ -73,15 +72,23 @@ const TimelinePointer = styled.div`
 `
 
 const Timeline = styled.div`
-	background-color: ${(props) => props.theme.color.timeline};
+	background-color: ${props => props.theme.color.timeline};
 	border-radius: 2px;
 	height: 3px;
 	max-width: 192px;
 	width: 100%;
 `
 
-const Controls = () => {
-	const { isPlay, changeControlStatus, songIndex, controlSong, animationTime } = useContext(Context)
+const Controls = ({
+	isPlay,
+	changeControlStatus,
+	songIndex,
+	animationTime,
+	changeId,
+	playlist
+}) => {
+	const controlSong = index =>
+		index >= 0 && index < playlist.length - 1 ? changeId(playlist[index].id) : null
 
 	const buttonStatus = isPlay === 'stopped' ? 'play' : isPlay === 'playing' ? 'pause' : 'play'
 
@@ -90,7 +97,7 @@ const Controls = () => {
 	return (
 		<StyledControls>
 			<Buttons>
-				{buttonArray.map((button) => (
+				{buttonArray.map(button => (
 					<SVGIcon
 						width={100}
 						key={button}
